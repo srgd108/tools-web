@@ -36,13 +36,13 @@ export const getData = (
  ): Promise<AxiosResponse<Tools[]>> => {
     
     return axios.get(
-      `/tools`,options
+      `http://localhost:8080/tools`,options
     );
   }
 
 
 export const getGetDataQueryKey = () => {
-    return [`/tools`] as const;
+    return [`http://localhost:8080/tools`] as const;
     }
 
     
@@ -88,7 +88,7 @@ export const setData = (
  ): Promise<AxiosResponse<ToolsResponse>> => {
     
     return axios.post(
-      `/tools`,
+      `http://localhost:8080/tools`,
       tools,options
     );
   }
@@ -136,13 +136,13 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
  ): Promise<AxiosResponse<MongoTools[]>> => {
     
     return axios.get(
-      `/tools/mongo`,options
+      `http://localhost:8080/tools/mongo`,options
     );
   }
 
 
 export const getGetMongoDataQueryKey = () => {
-    return [`/tools/mongo`] as const;
+    return [`http://localhost:8080/tools/mongo`] as const;
     }
 
     
@@ -188,7 +188,7 @@ export const setMongoData = (
  ): Promise<AxiosResponse<MongoTools>> => {
     
     return axios.post(
-      `/tools/mongo`,
+      `http://localhost:8080/tools/mongo`,
       mongoTools,options
     );
   }
@@ -236,13 +236,13 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
  ): Promise<AxiosResponse<Tools>> => {
     
     return axios.get(
-      `/tools/${id}`,options
+      `http://localhost:8080/tools/${id}`,options
     );
   }
 
 
 export const getGetData1QueryKey = (id: number,) => {
-    return [`/tools/${id}`] as const;
+    return [`http://localhost:8080/tools/${id}`] as const;
     }
 
     
@@ -288,7 +288,7 @@ export const deleteData = (
  ): Promise<AxiosResponse<void>> => {
     
     return axios.delete(
-      `/tools/${id}`,options
+      `http://localhost:8080/tools/${id}`,options
     );
   }
 
@@ -335,13 +335,13 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
  ): Promise<AxiosResponse<MongoTools>> => {
     
     return axios.get(
-      `/tools/mongo/${id}`,options
+      `http://localhost:8080/tools/mongo/${id}`,options
     );
   }
 
 
 export const getGetData2QueryKey = (id: string,) => {
-    return [`/tools/mongo/${id}`] as const;
+    return [`http://localhost:8080/tools/mongo/${id}`] as const;
     }
 
     
@@ -387,7 +387,7 @@ export const deleteData1 = (
  ): Promise<AxiosResponse<void>> => {
     
     return axios.delete(
-      `/tools/mongo/${id}`,options
+      `http://localhost:8080/tools/mongo/${id}`,options
     );
   }
 
