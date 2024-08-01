@@ -1,10 +1,17 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useGetData } from './impl/impl';
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
+import { useGetData } from "./impl/impl";
 
 const DataTable = () => {
-
-  const {data: tools} = useGetData();
+  const { data: tools } = useGetData();
 
   return (
     <TableContainer component={Paper}>

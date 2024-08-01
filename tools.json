@@ -13,9 +13,7 @@
   "paths": {
     "/tools": {
       "get": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "getData",
         "responses": {
           "200": {
@@ -34,9 +32,7 @@
         }
       },
       "post": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "setData",
         "requestBody": {
           "content": {
@@ -64,9 +60,7 @@
     },
     "/tools/mongo": {
       "get": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "getMongoData",
         "responses": {
           "200": {
@@ -85,9 +79,7 @@
         }
       },
       "post": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "setMongoData",
         "requestBody": {
           "content": {
@@ -115,9 +107,7 @@
     },
     "/tools/{id}": {
       "get": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "getData_1",
         "parameters": [
           {
@@ -144,9 +134,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "deleteData",
         "parameters": [
           {
@@ -168,9 +156,7 @@
     },
     "/tools/mongo/{id}": {
       "get": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "getData_2",
         "parameters": [
           {
@@ -196,9 +182,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "impl"
-        ],
+        "tags": ["impl"],
         "operationId": "deleteData_1",
         "parameters": [
           {

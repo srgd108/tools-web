@@ -1,8 +1,8 @@
-import * as React from 'react';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import Typography from '@mui/material/Typography';
-import DataTable from './JpaGetData';
-import ToolForm from './JpaPostData';
+import * as React from "react";
+import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import Typography from "@mui/material/Typography";
+import DataTable from "./JpaGetData";
+import ToolForm from "./JpaPostData";
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -14,13 +14,13 @@ function LightBulbIcon(props: SvgIconProps) {
 
 export default function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3, color: 'text.secondary' }}>
-      <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-      {'Please enter tool details below '}
-      <ToolForm/>
-      <p/>
-      {'List of JPA Tools:'}
-      <DataTable/>
+    <Typography sx={{ mt: 6, mb: 3, color: "text.secondary" }}>
+      <LightBulbIcon sx={{ mr: 1, verticalAlign: "middle" }} />
+      {"Please enter tool details below "}
+      <ToolForm />
+      <p />
+      {"List of JPA Tools:"}
+      <DataTable />
     </Typography>
   );
 }
