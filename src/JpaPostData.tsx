@@ -1,12 +1,14 @@
-import React, { FormEvent, useRef, useState } from "react";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
-import { useSetData } from "./impl/impl";
+import React, { FormEvent, useRef } from "react";
+import { TextField, Button, Box, Snackbar } from "@mui/material";
+import { getGetDataQueryKey, useSetData } from "./impl/impl";
 import { Tools } from "./model";
+import { useQueryClient } from "react-query";
 
 const ToolForm = () => {
   const idRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const { mutate: saveData, isLoading, isError, isSuccess } = useSetData();
+  const queryClient = useQueryClient();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -16,7 +18,18 @@ const ToolForm = () => {
       name: nameRef.current?.value ?? "",
     };
 
-    saveData({ data: tool });
+    saveData(
+      { data: tool },
+      {
+        onSuccess: () => {
+          <Snackbar message="Data with ID ${id} saved successfully" />;
+          queryClient.invalidateQueries(getGetDataQueryKey());
+        },
+        onError: () => {
+          <Snackbar message="Error saving data..." />;
+        },
+      }
+    );
   };
 
   return (
@@ -48,8 +61,6 @@ const ToolForm = () => {
       >
         {isLoading ? "Saving..." : "Save"}
       </Button>
-      {isError && <p style={{ color: "red" }}>Error saving data.</p>}
-      {isSuccess && <p style={{ color: "green" }}>Data saved successfully!</p>}
     </Box>
   );
 };

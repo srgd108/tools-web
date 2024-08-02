@@ -1,8 +1,9 @@
 import * as React from "react";
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
-import DataTable from "./JpaGetData";
 import ToolForm from "./JpaPostData";
+import DataTableGrid from "./JpaListData";
+import { Box } from "@mui/material";
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -14,13 +15,39 @@ function LightBulbIcon(props: SvgIconProps) {
 
 export default function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3, color: "text.secondary" }}>
-      <LightBulbIcon sx={{ mr: 1, verticalAlign: "middle" }} />
-      {"Please enter tool details below "}
-      <ToolForm />
-      <p />
-      {"List of JPA Tools:"}
-      <DataTable />
-    </Typography>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "2fr",
+          alignItems: "center",
+          padding: "20px",
+        }}
+      >
+        <Box
+          sx={{
+            padding: "10px",
+            marginRight: "20px", // Add space between the boxes
+          }}
+        >
+          <LightBulbIcon sx={{ mr: 2, verticalAlign: "middle" }} />
+          {"Please enter tool details: "}
+          <ToolForm />
+        </Box>
+        <Box
+          sx={{
+            padding: "10px",
+          }}
+        >
+          <DataTableGrid />
+        </Box>
+      </Box>
+    </div>
   );
 }
