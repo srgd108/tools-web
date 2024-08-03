@@ -25,7 +25,7 @@ export default function ProTip() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "2fr",
+          gridTemplateColumns: "2fr auto",
           alignItems: "center",
           padding: "20px",
         }}

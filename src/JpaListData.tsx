@@ -4,20 +4,15 @@ import { getGetDataQueryKey, useDeleteData, useGetData } from "./impl/impl";
 import { useQueryClient } from "react-query";
 import { Tools } from "./model";
 import { Remove } from "@mui/icons-material";
-import ToolsSnackbar from "./NotificationSnackbar";
+import { useSnackbar } from "./SnackbarProvider";
+import { SEVERITY_ERROR, SEVERITY_SUCCESS } from "./ToolsConstants";
 
 export default function DataTableGrid() {
   const queryClient = useQueryClient();
   const { mutate: deleteData, isLoading, isError, isSuccess } = useDeleteData();
   const { data: tools } = useGetData();
   const rows: Tools[] | undefined = tools?.data;
-
-  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackbarMessage, setSnackbarMessage] = React.useState("");
-
-  const handleCloseSnackbar = (event?: React.SyntheticEvent | Event) => {
-    setSnackbarOpen(false);
-  };
+  const { showSnackbar } = useSnackbar();
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
@@ -41,13 +36,11 @@ export default function DataTableGrid() {
       { id },
       {
         onSuccess: () => {
-          setSnackbarMessage(`Data with ID ${id} deleted successfully`);
-          setSnackbarOpen(true);
+          showSnackbar(`Data ${id} deleted successfully!`, SEVERITY_SUCCESS);
           queryClient.invalidateQueries(getGetDataQueryKey());
         },
         onError: () => {
-          setSnackbarMessage(`Error deleting data with ID ${id}`);
-          setSnackbarOpen(true);
+          showSnackbar("Error deleting data!", SEVERITY_ERROR);
         },
       }
     );
@@ -64,11 +57,6 @@ export default function DataTableGrid() {
           },
         }}
         pageSizeOptions={[5, 10]}
-      />
-      <ToolsSnackbar
-        message={snackbarMessage}
-        open={snackbarOpen}
-        onClose={handleCloseSnackbar}
       />
     </div>
   );

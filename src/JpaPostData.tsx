@@ -1,14 +1,17 @@
 import React, { FormEvent, useRef } from "react";
 import { TextField, Button, Box, Snackbar } from "@mui/material";
 import { getGetDataQueryKey, useSetData } from "./impl/impl";
-import { Tools } from "./model";
+import { Tools, ToolsResponse } from "./model";
 import { useQueryClient } from "react-query";
+import { useSnackbar } from "./SnackbarProvider";
+import { SEVERITY_ERROR, SEVERITY_SUCCESS } from "./ToolsConstants";
 
 const ToolForm = () => {
   const idRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const { mutate: saveData, isLoading, isError, isSuccess } = useSetData();
   const queryClient = useQueryClient();
+  const { showSnackbar } = useSnackbar();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -21,12 +24,16 @@ const ToolForm = () => {
     saveData(
       { data: tool },
       {
-        onSuccess: () => {
-          <Snackbar message="Data with ID ${id} saved successfully" />;
+        onSuccess: (response) => {
+          const responseId = response.data.tools?.id;
+          showSnackbar(
+            `Data ${responseId} saved successfully!`,
+            SEVERITY_SUCCESS
+          );
           queryClient.invalidateQueries(getGetDataQueryKey());
         },
         onError: () => {
-          <Snackbar message="Error saving data..." />;
+          showSnackbar("Error saving data!", SEVERITY_ERROR);
         },
       }
     );
